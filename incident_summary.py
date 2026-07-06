@@ -1,7 +1,7 @@
-report = generate_summary(
+def generate_summary(
     username,
-    event_name,
-    technique,
+    event,
+    mitre,
     tactic,
     category,
     risk_score,
@@ -9,7 +9,7 @@ report = generate_summary(
     detection_id,
     timestamp,
     source_ip
-)
+):
 
     return f"""
 ==================================================
