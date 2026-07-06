@@ -1,24 +1,24 @@
-# CloudTrail-Detection-Engine
+# CloudTrail Detection Engine
 
-Python-based detection engine for AWS CloudTrail logs.
+A Python-based cloud security project that analyzes AWS CloudTrail events and generates SOC-style incident reports.
 
 ## Features
 
-- Detect IAM User Creation
-- Detect CloudTrail Deletion Attempts
-- Detect S3 Permission Changes
-- Detect Console Login Events
+- AWS CloudTrail Event Analysis
+- MITRE ATT&CK Mapping
+- Risk Scoring
+- Automated Incident Summaries
 
-## Technologies
+## Supported Events
 
-- Python
-- AWS CloudTrail
-- Cloud Security
-- SOC Detection
+- ConsoleLogin
+- CreateUser
+- DeleteTrail
+- PutBucketPolicy
 
 ## Future Improvements
 
-- MITRE ATT&CK Mapping
-- Real CloudTrail API Integration
-- AI Incident Summary
-- Email Alerts
+- Real-time CloudTrail Integration
+- AI-Powered Incident Response
+- Email & Slack Alerts
+- Threat Intelligence Enrichment
