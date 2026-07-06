@@ -1,17 +1,38 @@
-def generate_summary(username, event, mitre, score):
+def generate_summary(
+    username,
+    event,
+    mitre,
+    risk_score,
+    severity,
+    detection_id
+):
 
     return f"""
+==================================================
+
 INCIDENT SUMMARY
 
-User: {username}
-Event: {event}
+Detection ID:
+{detection_id}
+
+User:
+{username}
+
+Event:
+{event}
+
+Severity:
+{severity}
+
+Risk Score:
+{risk_score}/100
 
 MITRE ATT&CK:
 {mitre}
 
-Risk Score:
-{score}/100
-
 Recommendation:
 Investigate the event and verify whether the activity was authorized.
+
+==================================================
 """
+`
