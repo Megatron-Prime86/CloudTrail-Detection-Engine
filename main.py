@@ -53,30 +53,34 @@ for event in logs:
     )
 
     report = generate_summary(
-        username,
-        event_name,
-        technique,
-        tactic,
-        category,
-        risk_score,
-        severity,
-        detection_id
-    )
+    username,
+    event_name,
+    technique,
+    tactic,
+    category,
+    risk_score,
+    severity,
+    detection_id,
+    timestamp,
+    source_ip
+)
 
     print(report)
 
     report_data.append(
-        {
-            "detection_id": detection_id,
-            "user": username,
-            "event": event_name,
-            "category": category,
-            "severity": severity,
-            "risk_score": risk_score,
-            "mitre": technique,
-            "tactic": tactic
-        }
-    )
+    {
+        "detection_id": detection_id,
+        "user": username,
+        "source_ip": source_ip,
+        "timestamp": timestamp,
+        "event": event_name,
+        "category": category,
+        "severity": severity,
+        "risk_score": risk_score,
+        "mitre": technique,
+        "tactic": tactic
+    }
+)
 
 export_report(report_data)
 
