@@ -5,25 +5,14 @@ from severity import get_severity
 from detection_ids import DETECTION_IDS
 from report_export import export_report
 from event_categories import EVENT_CATEGORIES
+import json
 
-logs = [
-    {
-        "EventName": "ConsoleLogin",
-        "Username": "subash"
-    },
-    {
-        "EventName": "CreateUser",
-        "Username": "admin"
-    },
-    {
-        "EventName": "DeleteTrail",
-        "Username": "attacker"
-    },
-    {
-        "EventName": "PutBucketPolicy",
-        "Username": "developer"
-    }
-]
+with open(
+    "sample_cloudtrail_logs.json",
+    "r"
+) as file:
+
+    logs = json.load(file)
 
 report_data = []
 
@@ -33,6 +22,9 @@ for event in logs:
 
     event_name = event["EventName"]
     username = event["Username"]
+
+    timestamp = event["Timestamp"]
+    source_ip = event["SourceIP"]
 
     mitre_data = MITRE_MAP.get(event_name)
 
