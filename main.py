@@ -1,15 +1,32 @@
 from mitre_mapping import MITRE_MAP
 from risk_score import calculate_risk
 from incident_summary import generate_summary
+from severity import get_severity
+from detection_ids import DETECTION_IDS
+from report_export import export_report
 
 logs = [
-    {"EventName": "ConsoleLogin", "Username": "subash"},
-    {"EventName": "CreateUser", "Username": "admin"},
-    {"EventName": "DeleteTrail", "Username": "attacker"},
-    {"EventName": "PutBucketPolicy", "Username": "developer"}
+    {
+        "EventName": "ConsoleLogin",
+        "Username": "subash"
+    },
+    {
+        "EventName": "CreateUser",
+        "Username": "admin"
+    },
+    {
+        "EventName": "DeleteTrail",
+        "Username": "attacker"
+    },
+    {
+        "EventName": "PutBucketPolicy",
+        "Username": "developer"
+    }
 ]
 
-print("\nCLOUDTRAIL DETECTION REPORT\n")
+report_data = []
+
+print("\nCLOUDTRAIL DETECTION ENGINE v3.0\n")
 
 for event in logs:
 
@@ -18,18 +35,56 @@ for event in logs:
 
     mitre_data = MITRE_MAP.get(event_name)
 
-    technique = mitre_data["technique"]
-    technique_name = mitre_data["name"]
+    technique = (
+        f"{mitre_data['technique']} - "
+        f"{mitre_data['name']}"
+    )
 
     risk_score = calculate_risk(event_name)
 
-    print("=" * 50)
-
-    print(
-        generate_summary(
-            username,
-            event_name,
-            f"{technique} - {technique_name}",
-            risk_score
-        )
+    severity = get_severity(
+        risk_score
     )
+
+    detection_id = DETECTION_IDS.get(
+        event_name
+    )
+
+    report = generate_summary(
+        username,
+        event_name,
+        technique,
+        risk_score,
+        severity,
+        detection_id
+    )
+
+    print(report)
+
+    report_data.append(
+        {
+            "detection_id":
+            detection_id,
+
+            "user":
+            username,
+
+            "event":
+            event_name,
+
+            "severity":
+            severity,
+
+            "risk_score":
+            risk_score,
+
+            "mitre":
+            technique
+        }
+    )
+
+export_report(report_data)
+
+print(
+    "\nReport exported to report.json\n"
+)
