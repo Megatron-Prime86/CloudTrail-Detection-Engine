@@ -4,6 +4,7 @@ from incident_summary import generate_summary
 from severity import get_severity
 from detection_ids import DETECTION_IDS
 from report_export import export_report
+from event_categories import EVENT_CATEGORIES
 
 logs = [
     {
@@ -26,7 +27,7 @@ logs = [
 
 report_data = []
 
-print("\nCLOUDTRAIL DETECTION ENGINE v3.0\n")
+print("\nCLOUDTRAIL DETECTION ENGINE v4.0\n")
 
 for event in logs:
 
@@ -40,7 +41,16 @@ for event in logs:
         f"{mitre_data['name']}"
     )
 
-    risk_score = calculate_risk(event_name)
+    tactic = mitre_data["tactic"]
+
+    category = EVENT_CATEGORIES.get(
+        event_name,
+        "Unknown"
+    )
+
+    risk_score = calculate_risk(
+        event_name
+    )
 
     severity = get_severity(
         risk_score
@@ -54,6 +64,8 @@ for event in logs:
         username,
         event_name,
         technique,
+        tactic,
+        category,
         risk_score,
         severity,
         detection_id
@@ -63,28 +75,17 @@ for event in logs:
 
     report_data.append(
         {
-            "detection_id":
-            detection_id,
-
-            "user":
-            username,
-
-            "event":
-            event_name,
-
-            "severity":
-            severity,
-
-            "risk_score":
-            risk_score,
-
-            "mitre":
-            technique
+            "detection_id": detection_id,
+            "user": username,
+            "event": event_name,
+            "category": category,
+            "severity": severity,
+            "risk_score": risk_score,
+            "mitre": technique,
+            "tactic": tactic
         }
     )
 
 export_report(report_data)
 
-print(
-    "\nReport exported to report.json\n"
-)
+print("\nReport exported to report.json\n")
