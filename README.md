@@ -175,25 +175,189 @@ Investigate the event and verify whether the activity was authorized.
 
 ---
 
-## Future Enhancements
+---
 
-### Version 4.0 (Planned)
+### Version 4.0 – Threat Context Enrichment
 
 - MITRE ATT&CK Tactic Mapping
 - Event Categorization
-- Timestamp Support
-- Executive Summary Generation
-- Improved Risk Analysis
+- Enhanced Executive Summaries
+- Human-Readable TXT Report Export
+- Improved Investigation Context
 
-### Future Roadmap
+#### Supported MITRE Tactics
 
-- Real AWS CloudTrail Integration
+| Event | MITRE Tactic |
+|---------|---------|
+| ConsoleLogin | Initial Access |
+| CreateUser | Persistence |
+| DeleteTrail | Defense Evasion |
+| PutBucketPolicy | Privilege Escalation |
+
+#### Event Categories
+
+| Event | Category |
+|---------|---------|
+| ConsoleLogin | Authentication Activity |
+| CreateUser | Identity Management |
+| DeleteTrail | Defense Evasion |
+| PutBucketPolicy | Access Control Modification |
+
+---
+
+### Version 5.0 – Investigation & IOC Intelligence
+
+- Realistic CloudTrail JSON Dataset
+- Timestamp Tracking
+- Source IP Tracking
+- IOC (Indicators of Compromise) Extraction
+- Investigation-Centric Reporting
+
+#### Added Investigation Fields
+
+- Username
+- Event Type
+- Source IP Address
+- Timestamp
+- Detection ID
+- Severity
+- MITRE Technique
+- MITRE Tactic
+
+#### IOC Section
+
+Each incident report now includes:
+
+```text
+Indicators of Compromise (IOC)
+
+User: attacker
+Source IP: 185.22.45.11
+Event: DeleteTrail
+```
+
+---
+
+## Project Structure
+
+```text
+cloudtrail-detection-engine/
+
+├── main.py
+├── sample_cloudtrail_logs.json
+├── mitre_mapping.py
+├── event_categories.py
+├── risk_score.py
+├── severity.py
+├── detection_ids.py
+├── incident_summary.py
+├── report_export.py
+├── report.json
+├── incident_report.txt
+└── README.md
+```
+
+---
+
+## Technologies Used
+
+- Python
+- AWS CloudTrail Concepts
+- MITRE ATT&CK Framework
+- Cloud Security Monitoring
+- Security Operations Center (SOC) Workflows
+- Detection Engineering Concepts
+- JSON Reporting
+
+---
+
+## Skills Demonstrated
+
+- Cloud Security Monitoring
+- Detection Engineering
+- Security Event Analysis
+- Incident Response
+- MITRE ATT&CK Mapping
+- Threat Detection
+- IOC Identification
+- Risk Assessment
+- Python Automation
+- Security Reporting
+
+---
+
+## Project Evolution
+
+### ✅ Version 1.0
+- CloudTrail Event Detection
+- Event Processing Engine
+
+### ✅ Version 2.0
+- MITRE ATT&CK Technique Mapping
+- Risk Scoring
+- Automated Incident Summaries
+
+### ✅ Version 3.0
+- Severity Classification
+- Detection IDs
+- JSON Report Export
+
+### ✅ Version 4.0
+- MITRE ATT&CK Tactic Mapping
+- Event Categorization
+- Enhanced Executive Summaries
+- TXT Report Export
+
+### ✅ Version 5.0
+- Realistic CloudTrail Dataset
+- Timestamp Tracking
+- Source IP Tracking
+- IOC Extraction
+- Investigation-Focused Reporting
+
+---
+
+## Future Roadmap
+
+### Version 6.0 (Planned)
+
+- Event Statistics Dashboard
+- Daily Event Metrics
+- Severity Distribution Analysis
+- Most Common Event Tracking
+- Trend Analysis
+
+### Long-Term Enhancements
+
+- Real AWS CloudTrail API Integration
 - AI-Powered Incident Summaries
 - Threat Intelligence Enrichment
+- IP Reputation Analysis
 - Email Alerting
-- Dashboard Integration
-- Cloud Security Monitoring Automation
+- Security Dashboard Visualization
+- Automated Cloud Security Monitoring
 
+---
+
+## Author
+
+**Subash G**
+
+Aspiring Cybersecurity Analyst | Blue Team & Cloud Security Enthusiast
+
+GitHub: https://github.com/Megatron-Prime86
+
+---
+
+## Current Status
+
+✅ Version 1.0 Complete  
+✅ Version 2.0 Complete  
+✅ Version 3.0 Complete  
+✅ Version 4.0 Complete  
+✅ Version 5.0 Complete  
+
+🚀 Currently planning Version 6.0
 ---
 
 ## Author
@@ -210,6 +374,6 @@ GitHub: https://github.com/Megatron-Prime86
 
 ✅ Version 1.0 Complete  
 ✅ Version 2.0 Complete  
-✅ Version 3.0 Complete  
-
-🚀 Currently progressing toward Version 4.0
+✅ Version 3.0 Complete
+✅ Version 4.0 Complete
+✅ Version 5.0 Complete
