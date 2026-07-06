@@ -1,21 +1,35 @@
-import json
-from detections import detect
+from mitre_mapping import MITRE_MAP
+from risk_score import calculate_risk
+from incident_summary import generate_summary
 
-with open("sample_logs.json") as file:
-    logs = json.load(file)
+logs = [
+    {"EventName": "ConsoleLogin", "Username": "subash"},
+    {"EventName": "CreateUser", "Username": "admin"},
+    {"EventName": "DeleteTrail", "Username": "attacker"},
+    {"EventName": "PutBucketPolicy", "Username": "developer"}
+]
 
-print("\nCloudTrail Detection Report\n")
+print("\nCLOUDTRAIL DETECTION REPORT\n")
 
 for event in logs:
 
-    result = detect(event)
+    event_name = event["EventName"]
+    username = event["Username"]
+
+    mitre_data = MITRE_MAP.get(event_name)
+
+    technique = mitre_data["technique"]
+    technique_name = mitre_data["name"]
+
+    risk_score = calculate_risk(event_name)
+
+    print("=" * 50)
 
     print(
-        f"User: {event['Username']} | "
-        f"Event: {event['EventName']}"
+        generate_summary(
+            username,
+            event_name,
+            f"{technique} - {technique_name}",
+            risk_score
+        )
     )
-
-    if result:
-        print("Alert:", result)
-
-    print("-" * 40)
