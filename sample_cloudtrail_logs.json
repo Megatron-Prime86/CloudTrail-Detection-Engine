@@ -1,0 +1,26 @@
+[
+    {
+        "EventName": "ConsoleLogin",
+        "Username": "subash",
+        "SourceIP": "10.0.0.10",
+        "Timestamp": "2026-07-06T08:00:00Z"
+    },
+    {
+        "EventName": "CreateUser",
+        "Username": "admin",
+        "SourceIP": "10.0.0.15",
+        "Timestamp": "2026-07-06T08:05:00Z"
+    },
+    {
+        "EventName": "DeleteTrail",
+        "Username": "attacker",
+        "SourceIP": "185.22.45.11",
+        "Timestamp": "2026-07-06T08:10:00Z"
+    },
+    {
+        "EventName": "PutBucketPolicy",
+        "Username": "developer",
+        "SourceIP": "10.0.0.20",
+        "Timestamp": "2026-07-06T08:15:00Z"
+    }
+]
