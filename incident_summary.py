@@ -22,6 +22,12 @@ Detection ID:
 User:
 {username}
 
+Timestamp:
+{timestamp}
+
+Source IP:
+{source_ip}
+
 Event:
 {event}
 
@@ -49,6 +55,17 @@ event was detected involving the activity
 The activity falls under the
 '{category}' category and maps to the
 MITRE ATT&CK tactic '{tactic}'.
+
+Indicators of Compromise (IOC)
+
+User:
+{username}
+
+Source IP:
+{source_ip}
+
+Event:
+{event}
 
 Recommended Actions:
 
