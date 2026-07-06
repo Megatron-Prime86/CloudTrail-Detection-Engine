@@ -1,0 +1,18 @@
+[
+  {
+    "EventName": "ConsoleLogin",
+    "Username": "subash"
+  },
+  {
+    "EventName": "CreateUser",
+    "Username": "admin"
+  },
+  {
+    "EventName": "DeleteTrail",
+    "Username": "attacker"
+  },
+  {
+    "EventName": "PutBucketPolicy",
+    "Username": "developer"
+  }
+]
