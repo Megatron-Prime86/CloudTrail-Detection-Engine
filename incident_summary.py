@@ -1,13 +1,15 @@
-def generate_summary(
+report = generate_summary(
     username,
-    event,
-    mitre,
+    event_name,
+    technique,
     tactic,
     category,
     risk_score,
     severity,
-    detection_id
-):
+    detection_id,
+    timestamp,
+    source_ip
+)
 
     return f"""
 ==================================================
