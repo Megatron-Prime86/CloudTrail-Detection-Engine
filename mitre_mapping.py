@@ -1,21 +1,27 @@
 MITRE_MAP = {
+
     "ConsoleLogin": {
         "technique": "T1078",
-        "name": "Valid Accounts"
+        "name": "Valid Accounts",
+        "tactic": "Initial Access"
     },
 
     "CreateUser": {
         "technique": "T1136",
-        "name": "Create Account"
+        "name": "Create Account",
+        "tactic": "Persistence"
     },
 
     "DeleteTrail": {
         "technique": "T1562",
-        "name": "Impair Defenses"
+        "name": "Impair Defenses",
+        "tactic": "Defense Evasion"
     },
 
     "PutBucketPolicy": {
         "technique": "T1098",
-        "name": "Account Manipulation"
+        "name": "Account Manipulation",
+        "tactic": "Privilege Escalation"
     }
+
 }
