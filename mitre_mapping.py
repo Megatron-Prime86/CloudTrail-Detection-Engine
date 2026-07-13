@@ -22,11 +22,12 @@ MITRE_MAP = {
         "technique": "T1098",
         "name": "Account Manipulation",
         "tactic": "Privilege Escalation"
-    }
-    "CreateBucket": {
-    "technique": "T1530",
-    "name": "Data from Cloud Storage",
-    "tactic": "Collection"
     },
+
+    "CreateBucket": {
+        "technique": "T1530",
+        "name": "Data from Cloud Storage",
+        "tactic": "Collection"
+    }
 
 }

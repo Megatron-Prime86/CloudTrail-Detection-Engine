@@ -10,6 +10,9 @@ EVENT_CATEGORIES = {
     "Defense Evasion",
 
     "PutBucketPolicy":
-    "Access Control Modification"
+    "Access Control Modification",
+
+    "CreateBucket":
+    "Storage Management"
 
 }

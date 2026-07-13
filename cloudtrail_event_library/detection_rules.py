@@ -10,8 +10,8 @@ DETECTION_RULES = {
         "severity_override": "HIGH"
     },
 
-    "AttachUserPolicy": {
-        "alert": "Privilege Modification Detected",
+    "PutBucketPolicy": {
+        "alert": "S3 Permission Modification",
         "severity_override": "HIGH"
     },
 
@@ -19,4 +19,6 @@ DETECTION_RULES = {
         "alert": "New S3 Bucket Created",
         "severity_override": None
     }
+
 }
+`

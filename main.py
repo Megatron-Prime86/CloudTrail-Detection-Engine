@@ -6,7 +6,7 @@ from detection_ids import DETECTION_IDS
 from report_export import export_report
 from event_categories import EVENT_CATEGORIES
 from cloudtrail_parser import parse_event
-
+from detection_rules import DETECTION_RULES
 from statistics import generate_statistics
 from statistics_export import export_statistics
 from statistics_report import print_statistics
@@ -72,18 +72,28 @@ for raw_event in logs:
         event_name,
         "CT-000"
     )
+    rule = DETECTION_RULES.get(
+    event_name,
+    {
+        "alert": "Generic Cloud Event",
+        "severity_override": None
+    }
+    )
+
+    alert_name = rule["alert"]
 
     report = generate_summary(
-        username,
-        event_name,
-        technique,
-        tactic,
-        category,
-        risk_score,
-        severity,
-        detection_id,
-        timestamp,
-        source_ip
+    username,
+    event_name,
+    technique,
+    tactic,
+    category,
+    risk_score,
+    severity,
+    detection_id,
+    timestamp,
+    source_ip,
+    alert_name
     )
 
     print(report)

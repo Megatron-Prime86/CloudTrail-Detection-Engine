@@ -8,13 +8,17 @@ def generate_summary(
     severity,
     detection_id,
     timestamp,
-    source_ip
+    source_ip,
+    alert_name
 ):
 
     return f"""
 ==================================================
 
 INCIDENT SUMMARY
+
+Alert:
+{alert_name}
 
 Detection ID:
 {detection_id}
@@ -45,16 +49,6 @@ Severity:
 
 Risk Score:
 {risk_score}/100
-
-Executive Summary:
-
-A {severity.lower()} severity cloud security
-event was detected involving the activity
-'{event}'.
-
-The activity falls under the
-'{category}' category and maps to the
-MITRE ATT&CK tactic '{tactic}'.
 
 Indicators of Compromise (IOC)
 
