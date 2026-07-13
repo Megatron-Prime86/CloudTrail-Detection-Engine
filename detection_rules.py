@@ -21,4 +21,3 @@ DETECTION_RULES = {
     }
 
 }
-`

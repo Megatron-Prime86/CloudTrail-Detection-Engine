@@ -1,0 +1,12 @@
+CLOUDTRAIL DETECTION ENGINE REPORT
+============================================================
+
+Detection ID: CT-005
+User: arn:aws:iam::513386726796:root
+Event: CreateBucket
+Category: Storage Management
+Severity: MEDIUM
+Risk Score: 40/100
+MITRE Technique: T1530 - Data from Cloud Storage
+MITRE Tactic: Collection
+------------------------------------------------------------

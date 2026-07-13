@@ -22,24 +22,27 @@ def generate_statistics(report_data):
         ] += 1
 
     return {
+
         "total_events":
-            len(report_data),
+        len(report_data),
 
         "critical":
-            severity_counter["CRITICAL"],
+        severity_counter["CRITICAL"],
 
         "high":
-            severity_counter["HIGH"],
+        severity_counter["HIGH"],
 
         "medium":
-            severity_counter["MEDIUM"],
+        severity_counter["MEDIUM"],
 
         "low":
-            severity_counter["LOW"],
+        severity_counter["LOW"],
 
         "most_common_event":
-            event_counter.most_common(1)[0][0],
+        event_counter.most_common(1)[0][0]
+        if event_counter else "None",
 
         "most_common_tactic":
-            tactic_counter.most_common(1)[0][0]
+        tactic_counter.most_common(1)[0][0]
+        if tactic_counter else "None"
     }

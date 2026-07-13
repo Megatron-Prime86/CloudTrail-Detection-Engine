@@ -7,6 +7,7 @@ from report_export import export_report
 from event_categories import EVENT_CATEGORIES
 from cloudtrail_parser import parse_event
 from detection_rules import DETECTION_RULES
+
 from statistics import generate_statistics
 from statistics_export import export_statistics
 from statistics_report import print_statistics
@@ -21,13 +22,17 @@ with open(
 
     logs = json.load(file)
 
+# Handle single event JSON files
+if isinstance(logs, dict):
+    logs = [logs]
+
 report_data = []
 
-print("\nCLOUDTRAIL DETECTION ENGINE v7.0\n")
+print("\nCLOUDTRAIL DETECTION ENGINE v7.1\n")
 
 for raw_event in logs:
 
-    # Parse raw CloudTrail event
+    # Parse CloudTrail event
     event = parse_event(
         raw_event
     )
@@ -38,7 +43,7 @@ for raw_event in logs:
     timestamp = event["Timestamp"]
     source_ip = event["SourceIP"]
 
-    # Handle unknown events gracefully
+    # MITRE Mapping
     mitre_data = MITRE_MAP.get(
         event_name,
         {
@@ -55,51 +60,59 @@ for raw_event in logs:
 
     tactic = mitre_data["tactic"]
 
+    # Category
     category = EVENT_CATEGORIES.get(
         event_name,
         "Unknown"
     )
 
+    # Risk Score
     risk_score = calculate_risk(
         event_name
     )
 
+    # Severity
     severity = get_severity(
         risk_score
     )
 
+    # Detection ID
     detection_id = DETECTION_IDS.get(
         event_name,
         "CT-000"
     )
+
+    # Detection Rules
     rule = DETECTION_RULES.get(
-    event_name,
-    {
-        "alert": "Generic Cloud Event",
-        "severity_override": None
-    }
+        event_name,
+        {
+            "alert": "Generic Cloud Event",
+            "severity_override": None
+        }
     )
 
     alert_name = rule["alert"]
 
+    # Report
     report = generate_summary(
-    username,
-    event_name,
-    technique,
-    tactic,
-    category,
-    risk_score,
-    severity,
-    detection_id,
-    timestamp,
-    source_ip,
-    alert_name
+        username,
+        event_name,
+        technique,
+        tactic,
+        category,
+        risk_score,
+        severity,
+        detection_id,
+        timestamp,
+        source_ip,
+        alert_name
     )
 
     print(report)
 
     report_data.append(
         {
+            "alert": alert_name,
             "detection_id": detection_id,
             "user": username,
             "source_ip": source_ip,
@@ -113,22 +126,22 @@ for raw_event in logs:
         }
     )
 
-# Export reports
+# Export Reports
 export_report(
     report_data
 )
 
-# Generate analytics
+# Analytics
 stats = generate_statistics(
     report_data
 )
 
-# Export analytics
+# Export Statistics
 export_statistics(
     stats
 )
 
-# Display analytics
+# Display Statistics
 print_statistics(
     stats
 )

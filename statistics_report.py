@@ -1,7 +1,11 @@
 def print_statistics(stats):
 
     print("\n" + "=" * 50)
-    print("SECURITY ANALYTICS SUMMARY")
+
+    print(
+        "SECURITY ANALYTICS SUMMARY"
+    )
+
     print("=" * 50)
 
     print(

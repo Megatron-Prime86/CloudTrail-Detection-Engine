@@ -1,0 +1,15 @@
+[
+    {
+        "alert": "New S3 Bucket Created",
+        "detection_id": "CT-005",
+        "user": "arn:aws:iam::513386726796:root",
+        "source_ip": "106.51.210.98",
+        "timestamp": "2026-07-13T06:03:20Z",
+        "event": "CreateBucket",
+        "category": "Storage Management",
+        "severity": "MEDIUM",
+        "risk_score": 40,
+        "mitre": "T1530 - Data from Cloud Storage",
+        "tactic": "Collection"
+    }
+]
