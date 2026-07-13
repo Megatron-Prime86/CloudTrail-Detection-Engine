@@ -1,30 +1,35 @@
 # CloudTrail Detection Engine
 
-A Python-based Cloud Security Detection Engine that analyzes AWS CloudTrail events and transforms them into structured SOC-style incident reports.
+A Python-based Cloud Security Detection and Analytics Platform that analyzes AWS CloudTrail events and transforms them into structured SOC-style incident reports.
 
-The project is designed to simulate the workflow of a Security Operations Center (SOC) analyst by identifying cloud security events, mapping them to MITRE ATT&CK techniques, assigning risk scores, classifying event severity, and exporting investigation results in a structured format.
+The project simulates the workflow of a Security Operations Center (SOC) analyst by ingesting AWS CloudTrail events, mapping activities to MITRE ATT&CK techniques, calculating risk scores, classifying event severity, extracting indicators of compromise (IOCs), generating incident reports, and producing security analytics.
 
 ---
 
-## Overview
+# Overview
 
 CloudTrail Detection Engine processes AWS CloudTrail events and provides:
 
 - Event Detection
-- MITRE ATT&CK Mapping
+- MITRE ATT&CK Technique Mapping
+- MITRE ATT&CK Tactic Mapping
 - Risk Scoring
 - Severity Classification
 - Detection IDs
+- IOC Extraction
 - Automated Incident Summaries
 - JSON Report Export
+- TXT Report Export
+- Security Analytics
+- Real CloudTrail Event Support
 
-The goal of this project is to bridge cloud security monitoring and security operations workflows through automation.
+The goal of the project is to transform raw AWS audit logs into actionable security intelligence.
 
 ---
 
-## Features
+# Features
 
-### Version 1.0 – Initial Detection Engine
+## ✅ Version 1.0 – Initial Detection Engine
 
 - CloudTrail Event Processing
 - Event Analysis
@@ -39,7 +44,7 @@ Supported Events:
 
 ---
 
-### Version 2.0 – Security Analysis Layer
+## ✅ Version 2.0 – Security Analysis Layer
 
 - MITRE ATT&CK Technique Mapping
 - Risk Score Calculation
@@ -56,14 +61,14 @@ Supported MITRE Techniques:
 
 ---
 
-### Version 3.0 – Reporting Engine
+## ✅ Version 3.0 – Reporting Engine
 
 - Severity Classification
 - Detection IDs
-- Structured Reporting
+- Structured Incident Reports
 - JSON Report Export
 
-#### Severity Levels
+### Severity Levels
 
 | Risk Score | Severity |
 |------------|------------|
@@ -72,7 +77,7 @@ Supported MITRE Techniques:
 | 40 - 69 | MEDIUM |
 | 0 - 39 | LOW |
 
-#### Detection IDs
+### Detection IDs
 
 | Event | Detection ID |
 |---------|---------|
@@ -80,300 +85,303 @@ Supported MITRE Techniques:
 | CreateUser | CT-002 |
 | DeleteTrail | CT-003 |
 | PutBucketPolicy | CT-004 |
+| CreateBucket | CT-005 |
 
 ---
 
-## Project Structure
-
-```text
-cloudtrail-detection-engine/
-
-├── main.py
-├── mitre_mapping.py
-├── risk_score.py
-├── severity.py
-├── detection_ids.py
-├── incident_summary.py
-├── report_export.py
-├── report.json
-└── README.md
-```
-
----
-
-## Example Output
-
-```text
-==================================================
-
-INCIDENT SUMMARY
-
-Detection ID:
-CT-003
-
-User:
-attacker
-
-Event:
-DeleteTrail
-
-Severity:
-CRITICAL
-
-Risk Score:
-95/100
-
-MITRE ATT&CK:
-T1562 - Impair Defenses
-
-Recommendation:
-Investigate the event and verify whether the activity was authorized.
-
-==================================================
-```
-
----
-
-## Sample JSON Export
-
-```json
-[
-    {
-        "detection_id": "CT-003",
-        "user": "attacker",
-        "event": "DeleteTrail",
-        "severity": "CRITICAL",
-        "risk_score": 95,
-        "mitre": "T1562 - Impair Defenses"
-    }
-]
-```
-
----
-
-## Technologies Used
-
-- Python
-- AWS CloudTrail Concepts
-- MITRE ATT&CK Framework
-- Cloud Security Monitoring
-- SOC Investigation Workflows
-- JSON Reporting
-
----
-
-## Skills Demonstrated
-
-- Cloud Security
-- Detection Engineering
-- Incident Response
-- Threat Detection
-- MITRE ATT&CK Mapping
-- Python Automation
-- Security Operations Center (SOC) Concepts
-- Security Reporting
-
----
-
----
-
-### Version 4.0 – Threat Context Enrichment
+## ✅ Version 4.0 – Threat Context Enrichment
 
 - MITRE ATT&CK Tactic Mapping
 - Event Categorization
 - Enhanced Executive Summaries
 - Human-Readable TXT Report Export
-- Improved Investigation Context
 
-#### Supported MITRE Tactics
+### MITRE ATT&CK Tactics
 
-| Event | MITRE Tactic |
+| Event | Tactic |
 |---------|---------|
 | ConsoleLogin | Initial Access |
 | CreateUser | Persistence |
 | DeleteTrail | Defense Evasion |
 | PutBucketPolicy | Privilege Escalation |
-
-#### Event Categories
-
-| Event | Category |
-|---------|---------|
-| ConsoleLogin | Authentication Activity |
-| CreateUser | Identity Management |
-| DeleteTrail | Defense Evasion |
-| PutBucketPolicy | Access Control Modification |
+| CreateBucket | Collection |
 
 ---
 
-### Version 5.0 – Investigation & IOC Intelligence
+## ✅ Version 5.0 – Investigation & IOC Intelligence
 
-- Realistic CloudTrail JSON Dataset
 - Timestamp Tracking
 - Source IP Tracking
-- IOC (Indicators of Compromise) Extraction
+- IOC Extraction
 - Investigation-Centric Reporting
 
-#### Added Investigation Fields
+### IOC Data
+
+Each report contains:
 
 - Username
 - Event Type
-- Source IP Address
 - Timestamp
-- Detection ID
+- Source IP Address
 - Severity
-- MITRE Technique
-- MITRE Tactic
+- MITRE ATT&CK Mapping
 
-#### IOC Section
+---
 
-Each incident report now includes:
+## ✅ Version 6.0 – Security Analytics Layer
 
-```text
-Indicators of Compromise (IOC)
+- Event Statistics
+- Severity Distribution
+- Most Common Event Tracking
+- Most Common MITRE Tactic Tracking
+- Security Dashboard Export
 
-User: attacker
-Source IP: 185.22.45.11
-Event: DeleteTrail
+Generated Analytics:
+
+- Total Events Analyzed
+- Critical Events
+- High Events
+- Medium Events
+- Low Events
+- Most Common Event
+- Most Common Tactic
+
+---
+
+## ✅ Version 7.0 – Real CloudTrail Event Ingestion
+
+Version 7 introduces support for parsing and analyzing real AWS CloudTrail logs.
+
+### New Capabilities
+
+- Real AWS CloudTrail Event Support
+- CloudTrail JSON Parsing
+- Native AWS Event Processing
+- Event Normalization Layer
+- Real Event Ingestion Pipeline
+
+### CloudTrail Parser
+
+The parser converts native CloudTrail events into a normalized structure used by the detection engine.
+
+### Supported CloudTrail Fields
+
+| CloudTrail Field | Parsed Output |
+|------------------|---------------|
+| eventName | EventName |
+| eventTime | Timestamp |
+| sourceIPAddress | SourceIP |
+| userIdentity.arn | Username |
+
+### Example Real CloudTrail Event
+
+```json
+{
+  "eventName": "CreateBucket",
+  "eventTime": "2026-07-13T06:03:20Z",
+  "sourceIPAddress": "106.51.210.98",
+  "eventSource": "s3.amazonaws.com"
+}
+```
+
+### Parsed Event
+
+```json
+{
+  "EventName": "CreateBucket",
+  "Username": "arn:aws:iam::ACCOUNT_ID:root",
+  "SourceIP": "106.51.210.98",
+  "Timestamp": "2026-07-13T06:03:20Z"
+}
 ```
 
 ---
 
-## Project Structure
+# Detection Workflow
+
+```text
+AWS CloudTrail Event
+          ↓
+CloudTrail Parser
+          ↓
+Detection Engine
+          ↓
+MITRE ATT&CK Mapping
+          ↓
+Risk Scoring
+          ↓
+Severity Classification
+          ↓
+IOC Extraction
+          ↓
+Security Analytics
+          ↓
+Report Generation
+```
+
+---
+
+# Project Structure
 
 ```text
 cloudtrail-detection-engine/
 
 ├── main.py
+├── cloudtrail_parser.py
+
+├── real_cloudtrail_logs.json
 ├── sample_cloudtrail_logs.json
+
 ├── mitre_mapping.py
 ├── event_categories.py
 ├── risk_score.py
 ├── severity.py
 ├── detection_ids.py
+
 ├── incident_summary.py
 ├── report_export.py
+
+├── statistics.py
+├── statistics_export.py
+├── statistics_report.py
+
 ├── report.json
 ├── incident_report.txt
+├── security_statistics.json
+
 └── README.md
 ```
 
 ---
 
-## Technologies Used
+# Sample Security Analytics Output
+
+```text
+==================================================
+SECURITY ANALYTICS SUMMARY
+==================================================
+
+Total Events Analyzed : 8
+
+Critical Events       : 2
+High Events           : 3
+Medium Events         : 1
+Low Events            : 2
+
+Most Common Event     : CreateUser
+
+Most Common Tactic    : Persistence
+
+==================================================
+```
+
+---
+
+# Technologies Used
 
 - Python
-- AWS CloudTrail Concepts
+- AWS CloudTrail
 - MITRE ATT&CK Framework
 - Cloud Security Monitoring
-- Security Operations Center (SOC) Workflows
-- Detection Engineering Concepts
-- JSON Reporting
+- Detection Engineering
+- Security Analytics
+- Incident Response Concepts
+- JSON Processing
 
 ---
 
-## Skills Demonstrated
+# Skills Demonstrated
 
-- Cloud Security Monitoring
+- Cloud Security
+- AWS Security Monitoring
 - Detection Engineering
-- Security Event Analysis
-- Incident Response
 - MITRE ATT&CK Mapping
 - Threat Detection
+- Security Analytics
+- Incident Response
 - IOC Identification
-- Risk Assessment
-- Python Automation
 - Security Reporting
+- Python Automation
 
 ---
 
-## Project Evolution
+# Project Evolution
 
 ### ✅ Version 1.0
-- CloudTrail Event Detection
-- Event Processing Engine
+- Event Detection Engine
 
 ### ✅ Version 2.0
-- MITRE ATT&CK Technique Mapping
+- MITRE ATT&CK Mapping
 - Risk Scoring
-- Automated Incident Summaries
 
 ### ✅ Version 3.0
 - Severity Classification
 - Detection IDs
-- JSON Report Export
+- JSON Reporting
 
 ### ✅ Version 4.0
 - MITRE ATT&CK Tactic Mapping
 - Event Categorization
-- Enhanced Executive Summaries
-- TXT Report Export
+- TXT Reporting
 
 ### ✅ Version 5.0
-- Realistic CloudTrail Dataset
-- Timestamp Tracking
 - Source IP Tracking
+- Timestamp Tracking
 - IOC Extraction
-- Investigation-Focused Reporting
+
+### ✅ Version 6.0
+- Security Analytics
+- Severity Distribution
+- Event Statistics
+
+### ✅ Version 7.0
+- Real CloudTrail Event Support
+- CloudTrail Parser
+- Real AWS Log Processing
 
 ---
 
-## Future Roadmap
+# Future Roadmap
 
-### Version 6.0 (Planned)
+## 🔄 Version 8.0
 
-- Event Statistics Dashboard
-- Daily Event Metrics
-- Severity Distribution Analysis
-- Most Common Event Tracking
-- Trend Analysis
+- AWS CloudTrail API Integration (boto3)
+- Automated Event Retrieval
+- Continuous CloudTrail Monitoring
 
-### Long-Term Enhancements
+## 🔄 Version 9.0
 
-- Real AWS CloudTrail API Integration
-- AI-Powered Incident Summaries
 - Threat Intelligence Enrichment
 - IP Reputation Analysis
-- Email Alerting
-- Security Dashboard Visualization
-- Automated Cloud Security Monitoring
+- IOC Correlation
+
+## 🔄 Version 10.0
+
+- Real-Time Alerting
+- Email Notifications
+- SOC Dashboard
 
 ---
 
-## Author
+# Author
 
 **Subash G**
 
 Aspiring Cybersecurity Analyst | Blue Team & Cloud Security Enthusiast
 
-GitHub: https://github.com/Megatron-Prime86
+GitHub:
+https://github.com/Megatron-Prime86
 
 ---
 
-## Current Status
+# Current Status
 
 ✅ Version 1.0 Complete  
 ✅ Version 2.0 Complete  
 ✅ Version 3.0 Complete  
 ✅ Version 4.0 Complete  
 ✅ Version 5.0 Complete  
+✅ Version 6.0 Complete  
+✅ Version 7.0 Complete  
 
-🚀 Currently planning Version 6.0
----
-
-## Author
-
-**Subash G**
-
-Aspiring Cybersecurity Analyst | Blue Team & Cloud Security Enthusiast
-
-GitHub: https://github.com/Megatron-Prime86
-
----
-
-## Project Status
-
-✅ Version 1.0 Complete  
-✅ Version 2.0 Complete  
-✅ Version 3.0 Complete
-✅ Version 4.0 Complete
-✅ Version 5.0 Complete
+🚀 Currently planning Version 8.0 – AWS CloudTrail API Integration
