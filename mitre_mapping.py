@@ -23,5 +23,10 @@ MITRE_MAP = {
         "name": "Account Manipulation",
         "tactic": "Privilege Escalation"
     }
+    "CreateBucket": {
+    "technique": "T1530",
+    "name": "Data from Cloud Storage",
+    "tactic": "Collection"
+    },
 
 }
