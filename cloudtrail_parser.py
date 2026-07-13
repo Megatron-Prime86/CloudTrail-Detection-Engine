@@ -5,7 +5,7 @@ def parse_event(event):
             "userIdentity",
             {}
         ).get(
-            "type",
+            "arn",
             "Unknown"
         )
     )
