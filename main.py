@@ -5,6 +5,7 @@ from severity import get_severity
 from detection_ids import DETECTION_IDS
 from report_export import export_report
 from event_categories import EVENT_CATEGORIES
+from cloudtrail_parser import parse_event
 
 from statistics import generate_statistics
 from statistics_export import export_statistics
@@ -12,9 +13,9 @@ from statistics_report import print_statistics
 
 import json
 
-# Load CloudTrail logs
+# Load real CloudTrail logs
 with open(
-    "sample_cloudtrail_logs.json",
+    "real_cloudtrail_logs.json",
     "r"
 ) as file:
 
@@ -22,9 +23,14 @@ with open(
 
 report_data = []
 
-print("\nCLOUDTRAIL DETECTION ENGINE v6.0\n")
+print("\nCLOUDTRAIL DETECTION ENGINE v7.0\n")
 
-for event in logs:
+for raw_event in logs:
+
+    # Parse raw CloudTrail event
+    event = parse_event(
+        raw_event
+    )
 
     event_name = event["EventName"]
     username = event["Username"]
@@ -32,7 +38,15 @@ for event in logs:
     timestamp = event["Timestamp"]
     source_ip = event["SourceIP"]
 
-    mitre_data = MITRE_MAP.get(event_name)
+    # Handle unknown events gracefully
+    mitre_data = MITRE_MAP.get(
+        event_name,
+        {
+            "technique": "Unknown",
+            "name": "Unknown Activity",
+            "tactic": "Unknown"
+        }
+    )
 
     technique = (
         f"{mitre_data['technique']} - "
@@ -55,7 +69,8 @@ for event in logs:
     )
 
     detection_id = DETECTION_IDS.get(
-        event_name
+        event_name,
+        "CT-000"
     )
 
     report = generate_summary(
@@ -88,12 +103,12 @@ for event in logs:
         }
     )
 
-# Export incident reports
+# Export reports
 export_report(
     report_data
 )
 
-# Generate security analytics
+# Generate analytics
 stats = generate_statistics(
     report_data
 )
