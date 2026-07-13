@@ -5,8 +5,14 @@ from severity import get_severity
 from detection_ids import DETECTION_IDS
 from report_export import export_report
 from event_categories import EVENT_CATEGORIES
+
+from statistics import generate_statistics
+from statistics_export import export_statistics
+from statistics_report import print_statistics
+
 import json
 
+# Load CloudTrail logs
 with open(
     "sample_cloudtrail_logs.json",
     "r"
@@ -16,7 +22,7 @@ with open(
 
 report_data = []
 
-print("\nCLOUDTRAIL DETECTION ENGINE v4.0\n")
+print("\nCLOUDTRAIL DETECTION ENGINE v6.0\n")
 
 for event in logs:
 
@@ -53,35 +59,59 @@ for event in logs:
     )
 
     report = generate_summary(
-    username,
-    event_name,
-    technique,
-    tactic,
-    category,
-    risk_score,
-    severity,
-    detection_id,
-    timestamp,
-    source_ip
-)
+        username,
+        event_name,
+        technique,
+        tactic,
+        category,
+        risk_score,
+        severity,
+        detection_id,
+        timestamp,
+        source_ip
+    )
 
     print(report)
 
     report_data.append(
-    {
-        "detection_id": detection_id,
-        "user": username,
-        "source_ip": source_ip,
-        "timestamp": timestamp,
-        "event": event_name,
-        "category": category,
-        "severity": severity,
-        "risk_score": risk_score,
-        "mitre": technique,
-        "tactic": tactic
-    }
+        {
+            "detection_id": detection_id,
+            "user": username,
+            "source_ip": source_ip,
+            "timestamp": timestamp,
+            "event": event_name,
+            "category": category,
+            "severity": severity,
+            "risk_score": risk_score,
+            "mitre": technique,
+            "tactic": tactic
+        }
+    )
+
+# Export incident reports
+export_report(
+    report_data
 )
 
-export_report(report_data)
+# Generate security analytics
+stats = generate_statistics(
+    report_data
+)
 
-print("\nReport exported to report.json\n")
+# Export analytics
+export_statistics(
+    stats
+)
+
+# Display analytics
+print_statistics(
+    stats
+)
+
+print(
+    "\nReport exported to report.json"
+)
+
+print(
+    "Statistics exported to security_statistics.json\n"
+)
