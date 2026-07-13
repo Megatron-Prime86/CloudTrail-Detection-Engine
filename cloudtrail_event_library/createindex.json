@@ -1,0 +1,45 @@
+{
+    "eventVersion": "1.09",
+    "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAXPCB3YWGFMUN3HR46:onboarding",
+        "arn": "arn:aws:sts::513386726796:assumed-role/AWSServiceRoleForResourceExplorer/onboarding",
+        "accountId": "513386726796",
+        "accessKeyId": "ASIAXPCB3YWGB3K252EV",
+        "sessionContext": {
+            "sessionIssuer": {
+                "type": "Role",
+                "principalId": "AROAXPCB3YWGFMUN3HR46",
+                "arn": "arn:aws:iam::513386726796:role/aws-service-role/resource-explorer-2.amazonaws.com/AWSServiceRoleForResourceExplorer",
+                "accountId": "513386726796",
+                "userName": "AWSServiceRoleForResourceExplorer"
+            },
+            "attributes": {
+                "creationDate": "2026-07-13T06:50:12Z",
+                "mfaAuthenticated": "false"
+            }
+        },
+        "invokedBy": "resource-explorer-2.amazonaws.com"
+    },
+    "eventTime": "2026-07-13T06:50:12Z",
+    "eventSource": "resource-explorer-2.amazonaws.com",
+    "eventName": "CreateIndex",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "resource-explorer-2.amazonaws.com",
+    "userAgent": "resource-explorer-2.amazonaws.com",
+    "requestParameters": {
+        "ClientToken": "d3d36ea1-0f33-4565-8b3f-400b1484f22d"
+    },
+    "responseElements": {
+        "Arn": "arn:aws:resource-explorer-2:us-east-1:513386726796:index/6b363fe3-6ca8-464a-9f08-702aa991f9b7",
+        "State": "CREATING",
+        "CreatedAt": "2026-07-13T06:50:12.116Z"
+    },
+    "requestID": "7628b5f5-6ed9-43b9-aa6e-85fdb97d28ce",
+    "eventID": "38dbf439-9ba0-439b-9cba-7b3c5ed3d59f",
+    "readOnly": false,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "513386726796",
+    "eventCategory": "Management"
+}

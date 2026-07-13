@@ -1,0 +1,47 @@
+{
+    "eventVersion": "1.11",
+    "userIdentity": {
+        "type": "Root",
+        "principalId": "513386726796",
+        "arn": "arn:aws:iam::513386726796:root",
+        "accountId": "513386726796",
+        "accessKeyId": "ASIAXPCB3YWGB2WV2Q6P",
+        "sessionContext": {
+            "attributes": {
+                "creationDate": "2026-07-13T05:53:06Z",
+                "mfaAuthenticated": "false"
+            }
+        }
+    },
+    "eventTime": "2026-07-13T06:36:06Z",
+    "eventSource": "iam.amazonaws.com",
+    "eventName": "CreateUser",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "106.51.210.98",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0",
+    "requestParameters": {
+        "userName": "test-user"
+    },
+    "responseElements": {
+        "user": {
+            "path": "/",
+            "userName": "test-user",
+            "userId": "AIDAXPCB3YWGHFUD3BY3C",
+            "arn": "arn:aws:iam::513386726796:user/test-user",
+            "createDate": "2026-07-13T06:36:06Z"
+        }
+    },
+    "requestID": "0478cf9d-52b3-40b7-8421-fa99c999f253",
+    "eventID": "dfef1cea-a888-4247-a97b-81968f32c619",
+    "readOnly": false,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "513386726796",
+    "eventCategory": "Management",
+    "tlsDetails": {
+        "tlsVersion": "TLSv1.3",
+        "cipherSuite": "TLS_AES_128_GCM_SHA256",
+        "clientProvidedHostHeader": "iam.amazonaws.com"
+    },
+    "sessionCredentialFromConsole": "true"
+}
